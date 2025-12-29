@@ -1,157 +1,97 @@
-## BI Internship Projects – End-to-End Microsoft BI Stack
-### 🎥 Project Demo Video
-
-[▶️ Watch a short demo video](00-powerBI and reporting)
+## BI Internship – End-to-End Microsoft BI Projects
 
 ### Overview
 
-This repository showcases selected work from my **industry-based BI / Data Analytics internship**, where I built end-to-end solutions using the **Microsoft BI stack**:
+This repository showcases selected work from my industry-based Business Intelligence / Data Analytics internship, where I designed and implemented end-to-end BI solutions using the Microsoft stack.
 
-- **SSIS** – ETL from raw CSV/Excel/flat files into staging and data warehouse tables  
-- **SSMS (SQL Server)** – data modelling, star schema design, table creation, and validation  
-- **SSRS** – paginated reports with parameters and clean layouts  
-- **Power BI** – interactive dashboards with slicers, KPIs, and visual storytelling  
+I built pipelines starting from raw CSV / Excel / flat files and progressed to more advanced solutions handling multiple files from folders, including consolidation using Union All in SSIS.
 
-The projects focus on **property analysis, crime analysis, and house value trends**, etc designed using a **Kimball-style star schema** and data warehouse approach.
+The work includes:
+- ETL with SSIS
+- Data warehouse design in SQL Server
+- Paginated reporting in SSRS
+- Interactive dashboards in Power BI
 
----
-
-### Architecture & Data Warehouse Design
-
-Across both projects, I followed a standard BI architecture:
-
-1. **Raw data** (CSV / Excel / flat files)
-2. **Staging tables** in SQL Server
-3. **Cleaned and transformed data** loaded into dimension and fact tables
-4. **Star schema** designed using Kimball methodology
-5. **Reporting layer** – SSRS paginated reports
-6. **Analytics & dashboards** – Power BI visuals and slicers
-
-Key design elements:
-
-- **Dimensions** such as:
-  - Time (Dim_Time)
-  - Geography (Dim_Geography)
-  - School (Dim_School)
-- **Facts** such as:
-  - Property values (Fact_Property_Value)
-  - Crime metrics / incidents
-  - School metrics
-
-I also considered a **bus matrix** to ensure shared dimensions (Time, Geography, School) could support multiple subject areas.
-
-**Artifacts:**
-
-- Star schema / database diagram (e.g. `03ssmsdiagram.png`)
-- Example SQL scripts for table creation and validation (in `/sql` if added)
+The analysis focuses on property, crime, and house value datasets, etc designed using a Kimball-style star schema with shared dimensions.
 
 ---
 
-### Project 1 – Single-File ETL (Property / House Value Analysis)
+###  Demo Video
 
-**Goal:**  
-Build an end-to-end pipeline from **single CSV/Excel/flat files** into a star-schema data warehouse, and create reports and dashboards for property / house value analysis.
+The video in this repository demonstrates:
+- a Power BI dashboard
+- navigation from Power BI to linked SSRS report pages
 
-**Process:**
-
-1. **Extract:**
-   - Loaded raw property/house value data from a single source file into **staging tables** using SSIS.
-
-2. **Transform:**
-   - Cleaned and standardised columns (dates, geography, numeric values).
-   - Used **Derived Column**, **Data Conversion**, and **Lookup** to map to dimension keys.
-
-3. **Load:**
-   - Loaded cleaned data into **dimension and fact tables** in SQL Server.
-
-4. **Validate:**
-   - Checked row counts, joins, and sample outputs in **SSMS**.
-
-5. **Report & Visualise:**
-   - Built **SSRS reports** to show house values by state, city, suburb, using parameters.
-   - Built **Power BI dashboards** with slicers and KPIs to analyse trends and comparisons.
-
-**Example screenshots:**
-
-- `01ssiscontrolsingle.png` – SSIS Control Flow for the single-file ETL  
-- `02ssisflowsingle.png` – SSIS Data Flow with Derived Column and Lookup  
-- `03ssmsdiagram.png` – Star schema / database diagram in SSMS  
-- `04ssrspropertyreport.png` – SSRS report preview (house value / property analysis)  
-- `05pbdashboardproperty.png` – Power BI property/house value dashboard  
+If it does not preview in the browser, download and play locally.
 
 ---
 
-### Project 2 – Multi-File ETL (Folder Source with UNION ALL)
+##  What this repository contains
 
-**Goal:**  
-Extend the ETL process to handle **multiple files in a folder** (e.g. multiple months or regions), using **UNION ALL** in SSIS, and integrate this into the same data warehouse.
+This repository includes selected screenshots and the demo video showing:
 
-**Process:**
+- SSIS control flows
+- SSIS data flows
+- single-file ingestion pipelines
+- multi-file folder ingestion using Union All
+- star-schema database diagrams in SQL Server
+- SQL validation queries
+- Power BI dashboards
+- SSRS report previews linked from Power BI
 
-1. **Extract (multiple files):**
-   - Configured **SSIS** to load data from multiple files in a folder.
-   - Used multiple sources combined with **Union All** in the Data Flow.
-
-2. **Transform:**
-   - Applied common transformations across all files:
-     - **Derived Column** for calculated or cleaned fields
-     - **Data Conversion** for consistent data types
-     - **Lookup** to map to dimension keys
-
-3. **Load:**
-   - Loaded consolidated, cleaned data into the same **fact tables** used in Project 1.
-
-4. **Validate:**
-   - Used **SSMS** to verify totals across all files and confirm data correctness after Union.
-
-5. **Report & Visualise:**
-   - Extended / created **SSRS reports** to use the expanded dataset.
-   - Updated or built **Power BI dashboards** to show trends over time, across more periods or regions.
-
-**Example screenshots:**
-
-- `06ssiscontrolmulti.png` – SSIS Control Flow for multi-file ETL  
-- `07ssisflowmultiunion.png` – Data Flow showing multiple sources with Union All  
-- `08ssisflowmultilookup.png` – Data Flow with transformation and lookups after Union  
-- `09ssmsvalidation.png` – SSMS validation query (row counts / sample joins)  
-- `10ssrscombinedreport.png` – SSRS report preview (e.g. crime, schools, or combined metrics)  
-- `11pbdashboardcrime.png` – Power BI crime/incident analysis dashboard  
-- `12pbdashboardsummary.png` – Summary dashboard showing key metrics and trends  
+Screenshots are used instead of raw data to maintain confidentiality.
 
 ---
 
-### Tools & Skills Demonstrated
+##  End-to-End Architecture
 
-- **Data Warehouse & Modelling**
-  - Kimball-style star schema (facts and dimensions)
-  - Bus matrix thinking for shared dimensions
+Raw files (single file & multiple files in folder)  
+→ SSIS load to staging tables  
+→ SSIS transforms and lookups  
+→ Dimension & Fact tables (Kimball star schema)  
+→ SQL Server data warehouse  
+→ SSRS paginated reports  
+→ Power BI dashboards (with links to SSRS)
 
-- **ETL – SSIS**
-  - Loading from CSV / Excel / flat files
-  - Using staging tables
-  - Derived Column, Data Conversion, Lookup, Union All
-  - Handling both single-file and multi-file scenarios
+---
 
-- **SQL / SSMS**
-  - Creating staging, dimension, and fact tables via SQL scripts
-  - Validating data with joins and row counts
-  - Working directly in SQL Server Management Studio
+##  Work completed during internship
 
-- **Reporting – SSRS**
-  - Designing paginated reports
-  - Using parameters (e.g. state, city, suburb)
-  - Working with multiple datasets
+During this internship, I:
 
-- **Dashboards – Power BI**
-  - Connecting to the data warehouse
-  - Building dashboards with slicers, KPIs, and visual storytelling
-  - Analysing property, crime, and house value metrics
+- built ETL for single CSV / Excel / flat files  
+- extended ETL to multiple files from folders  
+- used Union All to consolidate multi-file inputs  
+- implemented Derived Column, Data Conversion, Lookup  
+- created staging, dimension, and fact tables using SQL  
+- validated row counts and joins in SSMS  
+- designed SSRS reports with parameters  
+- built Power BI dashboards with slicers and KPIs  
+- linked Power BI dashboards to SSRS reports  
 
-- **General BI Skills**
-  - End-to-end thinking from raw data to insights
-  - Data quality and validation
-  - Presenting findings clearly to stakeholders/mentors
+The warehouse was designed using Kimball star schema principles with:
 
+- shared Time, Geography, and School dimensions etc measures
+- fact tables for property values, crime data, and school metrics  
 
+---
+
+##  Tools & Skills Demonstrated
+
+- SSIS ETL (single-file and multi-file pipelines)  
+- Union All for consolidating folder-based inputs  
+- Data warehouse design (Kimball/star schema)  
+- SQL Server (table creation, validation queries)  
+- SSRS paginated reporting with parameters  
+- Power BI dashboards and report navigation  
+- End-to-end BI solution design from raw files to insights  
+
+---
+
+###  Confidentiality Note
+
+- No internship raw data is shared  
+- Only screenshots and my own demo video are included  
+- Any identifying names or logos were removed or avoided  
 
 
