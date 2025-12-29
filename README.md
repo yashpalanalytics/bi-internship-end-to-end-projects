@@ -149,3 +149,8 @@ Extend the ETL process to handle **multiple files in a folder** (e.g. multiple m
   - Data quality and validation
   - Presenting findings clearly to stakeholders/mentors
 
+### 🎥 Project Demo Video
+
+[▶️ Watch a short demo video](00-powerBI and reporting)
+
+
